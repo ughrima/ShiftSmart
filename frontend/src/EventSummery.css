@@ -1,0 +1,34 @@
+.main-layout {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 20px;
+    width: 100%;
+    box-sizing: border-box;
+}
+/* Styling for the report section */
+.report-section {
+    flex: 1;
+    margin-right: 20px; /* Space between report and event summary */
+}
+/* Styling for the event summary section on the right */
+.event-summary-section {
+    flex: 1;
+    max-width: 400px; /* Control the width of the event summary section */
+}
+/* Loading and error containers */
+.loading-container, .error-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+/* Style adjustments for the Event Summary */
+.event-summary-container {
+    padding: 20px;
+}
+/* Add styling to the report content */
+.report-container {
+    padding: 20px;
+}
+
