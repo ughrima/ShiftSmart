@@ -14,7 +14,6 @@ public class Shift {
     private String id;
     private LocalDateTime startTime;
     private LocalDateTime endTime;
-    private String employeeid;
+    private String employeeId;  
     private String employerId;
-
 }

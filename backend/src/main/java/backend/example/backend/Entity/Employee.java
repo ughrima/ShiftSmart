@@ -16,7 +16,16 @@ public class Employee {
     private String employerId;
     private String Name;
     private Map<String,String> availability;
-    private Map<String,Boolean>prefernces;
+    private Map<String,Boolean>preferences;
     private String[] skills;
     private int assignedHours;
+
+    public Map<String, Boolean> getPreferences() {
+        return preferences;
+    }
+    
+    public void setPreferences(Map<String, Boolean> preferences) {
+        this.preferences = preferences;
+    }
+    
 }

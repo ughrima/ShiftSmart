@@ -11,6 +11,7 @@ import lombok.Data;
 public class Company {
     @Id
     private String id;
+    private String employerId;  
     private int maxHoursPerWeek;
     private boolean allowNightShifts;
     private boolean weekendOff;
