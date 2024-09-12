@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Box, Typography, Paper, CircularProgress, Grid } from '@mui/material';
-import './EventSummery.css';
+import './EventSummary.css';
 
 const EventSummary = () => {
     const [employeeData, setEmployeeData] = useState([]);
