@@ -9,10 +9,6 @@ function App() {
     <Router>
       <div className="App">
          <Taskbar />
-          <Route path="/login" element={<Login />} />
-          <Route path="/Report" element={<Report />} />
-          <Route path="/EventSummary" element={<EventSummary />} />
-        </Routes>
       </div>
     </Router>
   );
