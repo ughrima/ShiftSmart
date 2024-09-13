@@ -8,7 +8,7 @@ import WorkIcon from '@mui/icons-material/Work';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import LoginPage from './LoginPage'; // Import the login page
 import Report from './Report'; // Import the Report component
-import EventSummary from './EventSummery'; // Import EventSummary component
+import EventSummary from './EventSummary'; // Import EventSummary component
 import './Taskbar.css'; // Import the CSS if needed
 
 const Taskbar = () => {

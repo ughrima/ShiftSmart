@@ -55,12 +55,16 @@ const Report = () => {
                 startDate,
                 endDate
             });
+            // Use the response, e.g., log it or display a message
+            console.log(response.data);
             setMessage('Shifts generated successfully!');
+            
         } catch (error) {
             setError('Error generating shifts. Please try again.');
         } finally {
             setLoading(false);
         }
+        
     };
 
     if (loading && employees.length === 0) {
