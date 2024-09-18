@@ -1,43 +1,29 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import Select from 'react-select';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
-import axios from 'axios';
-import Spinner from './Spinner';
 import './Report.css'; // Ensure this CSS file exists
+
+const mockEmployees = [
+    { id: 1, name: 'John Doe' },
+    { id: 2, name: 'Jane Smith' },
+    { id: 3, name: 'Michael Brown' }
+];
 
 const Report = () => {
     const [selectedEmployees, setSelectedEmployees] = useState([]);
     const [startDate, setStartDate] = useState(null);
     const [endDate, setEndDate] = useState(null);
-    const [employees, setEmployees] = useState([]);
-    const [loading, setLoading] = useState(false);
     const [error, setError] = useState('');
     const [message, setMessage] = useState('');
 
-    // Fetch employee data when component mounts
-    useEffect(() => {
-        const fetchEmployees = async () => {
-            setLoading(true);
-            try {
-                const response = await axios.get('/api/employees');
-                const formattedEmployees = response.data.map(emp => ({
-                    value: emp.id,
-                    label: emp.name
-                }));
-                setEmployees(formattedEmployees);
-            } catch (error) {
-                setError('Error fetching employee data. Please try again.');
-            } finally {
-                setLoading(false);
-            }
-        };
-
-        fetchEmployees();
-    }, []);
+    const employees = mockEmployees.map(emp => ({
+        value: emp.id,
+        label: emp.name
+    }));
 
     // Form submit handler
-    const handleSubmit = async (e) => {
+    const handleSubmit = (e) => {
         e.preventDefault();
 
         if (selectedEmployees.length === 0 || !startDate || !endDate) {
@@ -47,29 +33,16 @@ const Report = () => {
 
         setError('');
         setMessage('');
-        setLoading(true);
 
-        try {
-            const response = await axios.post('/api/generate-shifts', {
-                employees: selectedEmployees.map(emp => emp.value),
-                startDate,
-                endDate
-            });
-            // Use the response, e.g., log it or display a message
-            console.log(response.data);
-            setMessage('Shifts generated successfully!');
-            
-        } catch (error) {
-            setError('Error generating shifts. Please try again.');
-        } finally {
-            setLoading(false);
-        }
-        
+        // Mock shift generation logic
+        const mockResponse = selectedEmployees.map(emp => ({
+            employee: emp.label,
+            shifts: `Shifts from ${startDate.toLocaleDateString()} to ${endDate.toLocaleDateString()}`
+        }));
+
+        console.log(mockResponse);
+        setMessage('Shifts generated successfully! Check the console for details.');
     };
-
-    if (loading && employees.length === 0) {
-        return <Spinner />; // Show spinner if employee data is loading
-    }
 
     return (
         <div className="main-container">
@@ -118,8 +91,8 @@ const Report = () => {
                     {message && <p className="success-message">{message}</p>}
 
                     {/* Submit Button */}
-                    <button type="submit" className="submit-btn" disabled={loading}>
-                        {loading ? 'Generating...' : 'Generate'}
+                    <button type="submit" className="submit-btn">
+                        Generate Report
                     </button>
                 </form>
             </div>

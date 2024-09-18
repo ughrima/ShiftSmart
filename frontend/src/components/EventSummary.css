@@ -31,4 +31,18 @@
 .report-container {
     padding: 20px;
 }
+.event-summary-container, .report-container {
+    padding: 10px; /* Adjust padding for smaller screens if needed */
+}
+
+@media (max-width: 768px) {
+    .main-layout {
+        flex-direction: column;
+    }
+
+    .report-section, .event-summary-section {
+        margin-right: 0;
+        max-width: 100%;
+    }
+}
 

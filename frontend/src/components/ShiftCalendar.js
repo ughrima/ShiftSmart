@@ -4,7 +4,9 @@ import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
 import moment from 'moment';
 import axios from 'axios';
-import 'react-big-calendar/lib/css/react-big-calendar.css'; 
+import 'react-big-calendar/lib/css/react-big-calendar.css';
+import './ShiftCalendar.css';
+
 
 const localizer = momentLocalizer(moment);
 
