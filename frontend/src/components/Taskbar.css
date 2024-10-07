@@ -1,64 +1,50 @@
-/* Style for the AppBar (taskbar) */
-.appbar {
-    background-color: #045656;
-    color: white;
+/* Taskbar.css */
+.taskbar {
+    position: fixed; /* Fixes the taskbar at the top */
+    top: 0; /* Aligns it to the top of the viewport */
+    left: 0; /* Aligns it to the left */
+    width: 100%; /* Full width */
+    background-color: #fff; /* Background color */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Optional shadow for separation */
+    z-index: 1000; /* Ensures it stays above other content */
 }
 
-/* Logo style */
-.appbar-logo {
-    width: 40px;
-    margin-right: 10px;
+.taskbar ul {
+    display: flex; /* Displays items in a row */
+    list-style: none; /* Removes default list styles */
+    padding: 10px; /* Padding around the list */
+    margin: 0; /* Removes default margin */
 }
 
-/* Buttons in the toolbar */
-.toolbar-button {
-    color: white; /* Button text color */
-    font-weight: bold; /* Bold text for buttons */
-    text-transform: none; /* Prevent uppercase transformation */
+.taskbar li {
+    margin-right: 20px; /* Space between items */
 }
 
-/* Space between the buttons and the right-aligned items */
-.flex-grow {
-    flex-grow: 1;
+.taskbar a {
+    text-decoration: none; /* Removes underline from links */
+    color: #333; /* Text color */
 }
 
-/* Language selection typography */
-.language-selection {
-    margin-left: 10px;
-    font-size: 1rem;
-}
-
-/* Login icon button */
-.login-button {
-    color: white;
-}
-
-/* Styling for hover effects on buttons */
-.toolbar-button:hover {
-    background-color: rgba(255, 255, 255, 0.1);
-}
-
-/* Main content style (for placeholder views) */
+/* Adjusting the content area to account for the fixed taskbar */
 .main-content {
-    padding: 20px;
+    margin-top: 60px; /* Add margin to prevent content from being hidden behind the taskbar */
+    padding: 20px; /* Optional padding */
 }
-/* Active button with an orange underline */
-button.active {
-    position: relative;
-    color: #ff9800; /* Orange color for active item */
-}
-
-button.active::after {
-    content: '';
-    position: absolute;
-    width: 100%;
-    height: 3px;
-    background-color: #ff9800; /* Orange underline */
-    bottom: -4px;
-    left: 0;
+/* Taskbar.css */
+.App {
+    display: flex;
+    flex-direction: column;
+    height: 100vh; /* Ensure it occupies full height */
 }
 
-button:hover {
-    color: #ff9800;
+main {
+    flex: 1; /* Take remaining space after AppBar */
+    overflow: hidden; /* Hide overflow to prevent scroll bars */
 }
+.taskbar {
+    padding: 0; /* Remove unnecessary padding */
+    margin: 0; /* Remove unnecessary margin */
+    /* Add any other styles to adjust layout */
+}
+
 

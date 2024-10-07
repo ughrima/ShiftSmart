@@ -1,57 +1,27 @@
-import React, { useState } from 'react';
-import { AppBar, Toolbar, Typography, Button, Box, Grid, IconButton } from '@mui/material';
+import React from 'react';
+import { AppBar, Toolbar, Typography, Button, Box, IconButton } from '@mui/material';
+import { Link } from 'react-router-dom'; // Import Link for routing
 import CalendarTodayIcon from '@mui/icons-material/CalendarToday';
 import AssessmentIcon from '@mui/icons-material/Assessment';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
-import LoginPage from './LoginPage';
-import Report from './Report';
-import EventSummary from './EventSummary';
-import ShiftCalendar from './ShiftCalendar'; // Import ShiftCalendar
-import './Taskbar.css';
+import './Taskbar.css'; 
 
 const Taskbar = () => {
-    const [currentView, setCurrentView] = useState('calendar'); // Default view
-
-    const handleNavigation = (view) => {
-        setCurrentView(view);
-    };
-
-    const renderView = () => {
-        switch (currentView) {
-            case 'calendar':
-                return <ShiftCalendar />; // Render ShiftCalendar component
-            case 'report':
-                return (
-                    <Grid container spacing={2} sx={{ padding: '20px' }}>
-                        <Grid item xs={12} md={4}>
-                            <Report />
-                        </Grid>
-                        <Grid item xs={12} md={8}>
-                            <EventSummary />
-                        </Grid>
-                    </Grid>
-                );
-            case 'login':
-                return <LoginPage />;
-            default:
-                return <ShiftCalendar />; // Default view
-        }
-    };
-
     return (
         <>
+            {/* AppBar for the taskbar navigation */}
             <AppBar position="static" sx={{ backgroundColor: '#045656' }}>
                 <Toolbar>
                     <img src="/path-to-logo.png" alt="logo" style={{ width: '40px', marginRight: '10px' }} />
                     <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-                    ShiftSmart
+                        ShiftSmart
                     </Typography>
 
+                    {/* Navigation Buttons */}
                     <Button
                         color="inherit"
                         startIcon={<CalendarTodayIcon />}
-                        onClick={() => handleNavigation('calendar')}
-                        className={currentView === 'calendar' ? 'active' : ''}
+                        component={Link} to="/" // Use Link for navigation
                     >
                         Calendar
                     </Button>
@@ -59,21 +29,27 @@ const Taskbar = () => {
                     <Button
                         color="inherit"
                         startIcon={<AssessmentIcon />}
-                        onClick={() => handleNavigation('report')}
-                        className={currentView === 'report' ? 'active' : ''}
+                        component={Link} to="/report" // Use Link for navigation
                     >
                         Report
                     </Button>
 
+                    {/* Spacer for Alignment */}
                     <Box sx={{ flexGrow: 1 }} />
 
-                    <IconButton color="inherit" onClick={() => handleNavigation('login')}>
+                    {/* Account Icon */}
+                    <IconButton color="inherit" component={Link} to="/login">
                         <AccountCircleIcon />
                     </IconButton>
                 </Toolbar>
             </AppBar>
-            <main>
-                {renderView()}
+
+            {/* Main content area where views are rendered */}
+            <main style={{ padding: '20px', overflow: 'hidden' }}>
+                {/* No need for manual view rendering, handled by routing in App.js */}
+                <div style={{ overflowY: 'auto', maxHeight: 'calc(100vh - 120px)' }}>
+                    {/* The Routes in App.js will handle rendering */}
+                </div>
             </main>
         </>
     );

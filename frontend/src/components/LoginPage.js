@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { TextField, Button, Paper, Typography, Box } from '@mui/material';
+import { Link } from 'react-router-dom'; // Import Link for routing
 import './LoginPage.css';
 
 const LoginPage = () => {
@@ -53,6 +54,13 @@ const LoginPage = () => {
                     >
                         Login
                     </Button>
+                    {/* Add the Signup link below the login button */}
+                    <Typography variant="body2" style={{ marginTop: '10px', textAlign: 'center' }}>
+                        Don't have an account?{' '}
+                        <Link to="/signup" style={{ textDecoration: 'none', color: '#045656' }}>
+                            Sign Up
+                        </Link>
+                    </Typography>
                 </form>
             </Paper>
         </Box>

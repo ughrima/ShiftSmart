@@ -1,0 +1,14 @@
+/* src/components/css/ColorInput.css */
+.ColorInput-popup {
+    position: absolute;
+    z-index: 2;
+  }
+  
+  .ColorInput-cover {
+    position: fixed;
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+    left: 0px;
+  }
+  

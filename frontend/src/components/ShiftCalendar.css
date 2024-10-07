@@ -1,46 +1,85 @@
-/* Basic styling for the ShiftCalendar component */
-.shift-calendar {
-    padding: 20px;
-    background-color: white; /* Background color for the calendar */
-    border-radius: 8px; /* Rounded corners */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+.shift-scheduler-container {
+    display: flex;
+    height: 100vh;
 }
 
-/* Header styling for the calendar */
-.shift-calendar-header {
+.sidebar {
+    width: 20%;
+    background-color: #f7f7f7;
+    padding: 20px;
+    border-right: 1px solid #ddd;
+}
+
+.mini-calendar {
+    margin-bottom: 30px;
+}
+
+.employee-list h4 {
+    margin-bottom: 10px;
+}
+
+.employee-list ul {
+    list-style: none;
+    padding: 0;
+}
+
+.employee-list li {
+    margin-bottom: 10px;
+}
+
+.main-content {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 20px;
+    padding: 10px 20px;
+    background-color: #004c8c;
+    color: white;
 }
 
-.shift-calendar-header h2 {
+.header h2 {
     margin: 0;
 }
 
-/* Calendar grid styling */
-.shift-calendar-grid {
-    display: grid;
-    grid-template-columns: repeat(7, 1fr); /* 7 columns for days of the week */
-    gap: 10px;
+.header nav button {
+    background: none;
+    border: none;
+    color: white;
+    margin-left: 20px;
+    font-size: 16px;
+    cursor: pointer;
 }
 
-/* Styling for each day cell */
-.shift-calendar-day {
-    padding: 10px;
-    background-color: #f9f9f9; /* Light background for each day cell */
+.calendar-container {
+    flex-grow: 1;
+    padding: 20px;
+}
+
+.floating-button {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+}
+
+.floating-button button {
+    background-color: #0062cc;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    font-size: 24px;
+    cursor: pointer;
+}
+.mini-calendar-style {
+    margin: 10px;
+    border: 1px solid #ccc; /* Add a border */
     border-radius: 4px; /* Rounded corners */
-    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    padding: 10px; /* Padding around the calendar */
+    background-color: #f9f9f9; /* Background color */
 }
-
-/* Highlighted days (for events or shifts) */
-.shift-calendar-day.highlight {
-    background-color: #e0f7fa; /* Light blue background for highlights */
-}
-
-/* Today’s date highlight */
-.shift-calendar-day.today {
-    border: 2px solid #00796b; /* Green border for today’s date */
-}
-
-/* Add any additional styles as needed */
