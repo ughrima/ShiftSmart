@@ -1,6 +1,7 @@
 package backend.example.backend.Entity;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import lombok.Data;
@@ -12,20 +13,32 @@ import java.util.Map;
 @Document(collection = "employees")
 public class Employee {
     @Id
-    private String id;
-    private String employerId;
-    private String Name;
-    private Map<String,String> availability;
-    private Map<String,Boolean>preferences;
-    private String[] skills;
-    private int assignedHours;
+//     private String id;
+//     private String employerId;
+//     private String Name;
+//     private Map<String,String> availability;
+//     private Map<String,Boolean>preferences;
+//     private String[] skills;
+//     private int assignedHours;
 
-    public Map<String, Boolean> getPreferences() {
-        return preferences;
-    }
+//     public Map<String, Boolean> getPreferences() {
+//         return preferences;
+//     }
     
-    public void setPreferences(Map<String, Boolean> preferences) {
-        this.preferences = preferences;
-    }
+//     public void setPreferences(Map<String, Boolean> preferences) {
+//         this.preferences = preferences;
+//     }
     
+// }
+
+    private String id;
+
+    private String name;
+    private String email;
+    private String role;
+
+    @DBRef
+    private Employer employer;
+
+
 }
