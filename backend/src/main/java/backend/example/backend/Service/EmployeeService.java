@@ -1,36 +1,60 @@
 package backend.example.backend.Service;
 
+import backend.example.backend.Entity.Employee;
+import backend.example.backend.Repository.EmployeeRepository;
+import backend.example.backend.Entity.Employer;
+import backend.example.backend.Repository.EmployerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import backend.example.backend.Entity.Employee;
-import backend.example.backend.Repository.EmployeeRepository;
-
 import java.util.List;
+import java.util.Optional;
 
-//fetches, adds and updates employees
 @Service
 public class EmployeeService {
 
     @Autowired
     private EmployeeRepository employeeRepository;
 
-    //get all employees of an employer
-    public List<Employee> getEmployeesByEmployer(String employerId) {
-        return employeeRepository.findByEmployerId(employerId);
+    @Autowired
+    private EmployerRepository employerRepository;
+
+    // Get all employees
+    public List<Employee> getAllEmployees() {
+        return employeeRepository.findAll();
     }
 
-    // add employees
-    public Employee addEmployee(Employee employee) {
-        return employeeRepository.save(employee);
+    // Get employee by ID
+    public Optional<Employee> getEmployeeById(String id) {
+        return employeeRepository.findById(id);
     }
 
-    //update employee details
+    // Add a new employee to an employer
+    public Employee addEmployeeToEmployer(String employerId, Employee employee) {
+        Employer employer = employerRepository.findById(employerId)
+                .orElseThrow(() -> new RuntimeException("Employer not found"));
+
+        employee.setEmployer(employer);
+        employee = employeeRepository.save(employee);
+
+        employer.getEmployees().add(employee);
+        employerRepository.save(employer);
+
+        return employee;
+    }
+
+    // Update an existing employee
     public Employee updateEmployee(String id, Employee updatedEmployee) {
-        Employee employee = employeeRepository.findById(id).orElseThrow(() -> new RuntimeException("Employee not found"));
-        employee.setAvailability(updatedEmployee.getAvailability());
-        employee.setPreferences(updatedEmployee.getPreferences());
-        employee.setSkills(updatedEmployee.getSkills());
-        return employeeRepository.save(employee);
+        return employeeRepository.findById(id).map(employee -> {
+            employee.setName(updatedEmployee.getName());
+            employee.setEmail(updatedEmployee.getEmail());
+            employee.setRole(updatedEmployee.getRole());
+            return employeeRepository.save(employee);
+        }).orElseThrow(() -> new RuntimeException("Employee not found"));
+    }
+
+    // Delete an employee
+    public void deleteEmployee(String id) {
+        employeeRepository.deleteById(id);
     }
 }

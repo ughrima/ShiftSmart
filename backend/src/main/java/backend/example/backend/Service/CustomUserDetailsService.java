@@ -1,12 +1,13 @@
-package backend.example.backend.Security;
+package backend.example.backend.Service;
 
-import backend.example.backend.Entity.Employer;
-import backend.example.backend.Repository.EmployerRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
+import org.springframework.beans.factory.annotation.Autowired;
+
+import backend.example.backend.Entity.Employer;
+import backend.example.backend.Repository.EmployerRepository;
 
 @Service
 public class CustomUserDetailsService implements UserDetailsService {
@@ -16,15 +17,17 @@ public class CustomUserDetailsService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+        // Find the employer by email
         Employer employer = employerRepository.findByEmail(email);
         if (employer == null) {
             throw new UsernameNotFoundException("Employer not found with email: " + email);
         }
 
-        return org.springframework.security.core.userdetails.User
-                .withUsername(employer.getEmail())
-                .password(employer.getPassword()) // Password comes from the database
-                .authorities("ROLE_EMPLOYER") // Give a role to the user
+        // Return Spring Security's User object
+        return org.springframework.security.core.userdetails.User.builder()
+                .username(employer.getEmail())
+                .password(employer.getPassword()) // Already hashed with BCrypt
+                .roles("EMPLOYER") // Assign the role
                 .build();
     }
 }
