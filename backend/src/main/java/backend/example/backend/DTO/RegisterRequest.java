@@ -18,4 +18,10 @@ public class RegisterRequest {
     private String companyName;
 
     private MultipartFile employeeExcel; // File upload
+
+    private int workDaysPerWeek;
+    private boolean allowNightShifts;
+    private int maxWorkHoursPerDay;
+    private boolean mandatoryWeekendsOff;
+    private boolean flexibleWorkHours;
 }

@@ -18,6 +18,14 @@ public class Employer {
     private String password;          // Encrypted password
     private String companyName;       // Name of the company
 
+    private int workDaysPerWeek;
+    private boolean allowNightShifts;
+    private int maxWorkHoursPerDay;
+    private boolean mandatoryWeekendsOff;
+    private boolean flexibleWorkHours;
+    private int maxShiftsPerWeek;
+
+
     // Reference to a list of employees
     @DBRef
     private List<Employee> employees = new ArrayList<>();

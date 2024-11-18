@@ -3,8 +3,6 @@ package backend.example.backend.Controller;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.Reader;
-import java.util.ArrayList;
-import java.util.List;
 
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVRecord;
@@ -29,6 +27,8 @@ import backend.example.backend.DTO.*;
 
 import org.springframework.security.core.Authentication;
 
+import java.util.*
+;
 @RestController
 @RequestMapping("auth")
 public class AuthController {
@@ -71,12 +71,21 @@ public class AuthController {
             employer.setEmail(registerRequest.getEmail());
             employer.setPassword(passwordEncoder.encode(registerRequest.getPassword()));
             employer.setCompanyName(registerRequest.getCompanyName());
+
+            //policies
+            employer.setWorkDaysPerWeek(registerRequest.getWorkDaysPerWeek());
+            employer.setAllowNightShifts(registerRequest.isAllowNightShifts());
+            employer.setMaxWorkHoursPerDay(registerRequest.getMaxWorkHoursPerDay());
+            employer.setMandatoryWeekendsOff(registerRequest.isMandatoryWeekendsOff());
+            employer.setFlexibleWorkHours(registerRequest.isFlexibleWorkHours());
     
             MultipartFile employeeFile = registerRequest.getEmployeeExcel();
             List<Employee> employees = parseCsv(employeeFile);
             employees.forEach(employee -> employee.setEmployer(employer));
     
             employerRepository.save(employer);
+            System.out.println("Saved Employees: " + employees);
+
             employeeRepository.saveAll(employees);
     
             return ResponseEntity.ok("Employer registered successfully");
@@ -84,9 +93,8 @@ public class AuthController {
             return ResponseEntity.badRequest().body("Error during registration: " + e.getMessage());
         }
     }
-    
 
-    // CSV Parsing Logic
+    //parsing csv logic
     private List<Employee> parseCsv(MultipartFile file) {
         if (file == null || file.isEmpty()) {
             throw new RuntimeException("CSV file is empty or not provided.");
@@ -94,22 +102,44 @@ public class AuthController {
         List<Employee> employees = new ArrayList<>();
         try (Reader reader = new InputStreamReader(file.getInputStream())) {
             Iterable<CSVRecord> records = CSVFormat.DEFAULT.builder()
-                .setHeader()
+                .setHeader("Name", "Email", "Role", "Availability", "CurrentWorkHours", "TotalWorkHoursThisWeek")
                 .setSkipHeaderRecord(true)
                 .build()
                 .parse(reader);
     
             for (CSVRecord record : records) {
-                Employee employee = new Employee();
-                employee.setName(record.get("Name"));
-                employee.setEmail(record.get("Email"));
-                employee.setRole(record.get("Role"));
-                employees.add(employee);
+                try {
+                    Employee employee = new Employee();
+                    employee.setName(record.get("Name"));
+                    employee.setEmail(record.get("Email"));
+                    employee.setRole(record.get("Role"));
+    
+                    String availability = record.get("Availability");
+                    employee.setAvailability(availability != null && !availability.isEmpty()
+                        ? Arrays.asList(availability.split(","))
+                        : new ArrayList<>());
+    
+                    employee.setCurrentWorkHours(safeParseInt(record.get("CurrentWorkHours"), 0));
+                    employee.setTotalWorkHoursThisWeek(safeParseInt(record.get("TotalWorkHoursThisWeek"), 0));
+    
+                    employees.add(employee);
+                    System.out.println("Successfully parsed record: " + employee);
+                } catch (Exception e) {
+                    System.err.println("Failed to parse record: " + record.toString() + " Error: " + e.getMessage());
+                }
             }
         } catch (IOException e) {
             throw new RuntimeException("Failed to parse CSV file: " + e.getMessage());
         }
         return employees;
+    }
+    
+    private int safeParseInt(String value, int defaultValue) {
+        try {
+            return value != null && !value.isEmpty() ? Integer.parseInt(value) : defaultValue;
+        } catch (NumberFormatException e) {
+            return defaultValue;
+        }
     }
     
     
