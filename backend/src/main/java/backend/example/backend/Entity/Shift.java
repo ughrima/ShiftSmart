@@ -17,9 +17,12 @@ public class Shift {
     private String endTime; // e.g., "17:00"
     private boolean isNightShift; //yes or a no
     private int duration; // Calculated duration in hours
+    private int maxEmployees; //max employees per that shift
 
     @DBRef
     private Employer employer; // Associated employer
+    
+    private List<String> requiredRoles = new ArrayList<>(); 
     
     @DBRef
     private List<Employee> assignedEmployees = new ArrayList<>(); // Employees assigned to this shift
