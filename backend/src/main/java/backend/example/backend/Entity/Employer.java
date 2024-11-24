@@ -1,4 +1,7 @@
+
 package backend.example.backend.Entity;
+import jakarta.persistence.ElementCollection;
+import jakarta.persistence.FetchType;
 
 import lombok.Data;
 import org.springframework.data.annotation.Id;
@@ -6,9 +9,10 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
-// Employers who make their accounts
 @Data
 @Document(collection = "employers")
 public class Employer {
@@ -24,6 +28,10 @@ public class Employer {
     private boolean mandatoryWeekendsOff;
     private boolean flexibleWorkHours;
     private int maxShiftsPerWeek;
+
+    @ElementCollection(fetch = FetchType.EAGER)
+    private Set<String> roles = new HashSet<>();
+
 
 
     // Reference to a list of employees

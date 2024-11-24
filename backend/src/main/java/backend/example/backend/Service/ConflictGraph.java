@@ -13,7 +13,9 @@ public class ConflictGraph {
     public void addEdge(Shift shift1, Shift shift2) {
         adjacencyList.computeIfAbsent(shift1, k -> new ArrayList<>()).add(shift2);
         adjacencyList.computeIfAbsent(shift2, k -> new ArrayList<>()).add(shift1);
+        System.out.println("Added conflict between shift " + shift1.getId() + " and shift " + shift2.getId());
     }
+    
 
     // Get all conflicts for a specific shift
     public List<Shift> getConflicts(Shift shift) {
