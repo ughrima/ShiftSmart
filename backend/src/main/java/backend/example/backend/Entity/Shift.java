@@ -31,7 +31,8 @@ public class Shift {
 
     private List<String> requiredRoles = new ArrayList<>();
     private List<Employee> assignedEmployees = new ArrayList<>(); // Initialize to avoid null
-    // @DBRef
+    
+    @DBRef
     private Employer employer;
     
 }

@@ -73,15 +73,20 @@ public class CustomUserDetailsService implements UserDetailsService {
         return new User(employer.getEmail(), employer.getPassword(), getAuthorities(employer));
     }
 
-    private Collection<? extends GrantedAuthority> getAuthorities(Employer employer) {
-        if (employer.getRoles() == null || employer.getRoles().isEmpty()) {
-            return List.of(new SimpleGrantedAuthority("ROLE_USER"));
+    // private Collection<? extends GrantedAuthority> getAuthorities(Employer employer) {
+    //     if (employer.getRoles() == null || employer.getRoles().isEmpty()) {
+    //         return List.of(new SimpleGrantedAuthority("ROLE_USER"));
+    //     }
+//     return employer.getRoles().stream()
+//     .map(role -> new SimpleGrantedAuthority("ROLE_" + role))
+//     .collect(Collectors.toList());
+// }
+
+        private Collection<? extends GrantedAuthority> getAuthorities(Employer employer) {
+            return employer.getRoles().stream()
+                    .map(SimpleGrantedAuthority::new) // No "ROLE_" prefix added
+                    .collect(Collectors.toList());
         }
-    
-        return employer.getRoles().stream()
-                .map(role -> new SimpleGrantedAuthority("ROLE_" + role))
-                .collect(Collectors.toList());
-    }
     
     
     

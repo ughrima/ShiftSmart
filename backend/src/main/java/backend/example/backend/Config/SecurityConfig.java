@@ -80,7 +80,8 @@ public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Excepti
     http.csrf().disable()
         .authorizeHttpRequests(authz -> authz
             .requestMatchers("/auth/**").permitAll()
-            .requestMatchers("/shifts/**").hasRole("EMPLOYER")
+            .requestMatchers("/shifts/**").hasAuthority("ROLE_EMPLOYER")
+            .requestMatchers("/shifts/schedule").hasAuthority("ROLE_EMPLOYER") // Ensure EMPLOYER authority is used
             .anyRequest().authenticated()
         )
         .addFilterBefore(jwtTokenFilter, UsernamePasswordAuthenticationFilter.class);
