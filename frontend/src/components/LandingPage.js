@@ -1,173 +1,217 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import { Button, Typography, Box, TextField, AppBar, Toolbar } from '@mui/material';
-import './LandingPage.css';
+import React from "react";
+import { Link } from "react-router-dom";
+import { AppBar, Toolbar, Box, Button, Typography, Grid, Divider } from "@mui/material";
+import { Schedule, BarChart, Group, Monitor, AccessTime, TrendingUp, Phone, Email, LocationOn } from "@mui/icons-material";
+import "./LandingPage.css";
 
 const LandingPage = () => {
     return (
         <div className="landing-page">
             {/* Navbar */}
-            <AppBar position="static" className="navbar" sx={{ backgroundColor: '#045656' }}>
-                <Toolbar className="navbar-toolbar">
-                    {/* Left Section: Title and Links */}
-                    <Box className="navbar-left" sx={{ display: 'flex', alignItems: 'center' }}>
-                        <Typography variant="h6" className="navbar-title" sx={{ marginRight: '20px' }}>
-                            Workforce Shift Scheduling
-                        </Typography>
-                        <Box className="navbar-links" sx={{ display: 'flex', gap: '20px' }}>
-                            <a href="#features" className="navbar-link">
-                                Features
-                            </a>
-                            <a href="#about" className="navbar-link">
-                                About Us
-                            </a>
-                            <a href="#contact" className="navbar-link">
-                                Contact Us
-                            </a>
-                        </Box>
+            <AppBar position="static" elevation={0} style={{ backgroundColor: "#fff", color: "#333" }}>
+                <Toolbar style={{ display: "flex", justifyContent: "space-between", padding: "0 20px" }}>
+                    <Typography variant="h6" style={{ fontWeight: "bold", color: "#045656" }}>
+                        Workforce Shift Scheduling
+                    </Typography>
+                    <Box style={{ display: "flex", gap: "20px" }}>
+                        <a href="#features" className="nav-link">Features</a>
+                        <a href="#about" className="nav-link">About Us</a>
+                        <a href="#contact" className="nav-link">Contact Us</a>
                     </Box>
-
-                    {/* Right Section: Login and Sign Up Buttons */}
-                    <Box className="navbar-auth" sx={{ display: 'flex', gap: '15px' }}>
-                        <Link to="/login" className="navbar-auth-link">
-                            <Button
-                                variant="outlined"
-                                className="auth-btn"
-                                sx={{
-                                    borderColor: '#fff',
-                                    color: '#fff',
-                                    '&:hover': {
-                                        borderColor: '#ccc',
-                                        color: '#ccc',
-                                    },
-                                }}
-                            >
-                                Login
+                    <Box style={{ display: "flex", gap: "15px" }}>
+                        <Link to="/login" style={{ textDecoration: "none" }}>
+                            <Button variant="outlined" style={{ borderColor: "#045656", color: "#000000" }}>
+                                Sign In
                             </Button>
                         </Link>
-                        <Link to="/signup" className="navbar-auth-link">
-                            <Button
-                                variant="contained"
-                                className="auth-btn"
-                                sx={{
-                                    backgroundColor: '#fff',
-                                    color: '#045656',
-                                    '&:hover': {
-                                        backgroundColor: '#ccc',
-                                    },
-                                }}
-                            >
-                                Sign Up
+                        <Link to="/signup" style={{ textDecoration: "none" }}>
+                            <Button variant="contained" style={{ backgroundColor: "#045656", color: "#ffffff" }}>
+                                Sign Up Free
                             </Button>
                         </Link>
                     </Box>
                 </Toolbar>
             </AppBar>
 
-            {/* Header Section */}
-            <header className="landing-header">
-                <h1>Efficient Workforce Management</h1>
-                <p>Streamline shift scheduling and team collaboration.</p>
-                <div className="header-buttons">
-                    <Link to="/login">
-                        <Button
-                            variant="contained"
-                            className="landing-btn"
-                            sx={{
-                                backgroundColor: '#2A3D45',
-                                '&:hover': { backgroundColor: '#1f2d33' },
-                            }}
-                        >
-                            Get Started
-                        </Button>
-                    </Link>
-                </div>
-            </header>
-            {/* Features Section */}
-            <section id="features" className="features-section">
-                <Typography variant="h4" className="section-title">
-                    Features
+            {/* Main Heading Section */}
+            <header
+                style={{
+                    textAlign: "center",
+                    padding: "50px 20px",
+                    backgroundColor: "#045656FF",
+                    color: "#fff",
+                }}
+            >
+                <Typography variant="h3" style={{ fontWeight: "bold", marginBottom: "20px" }}>
+                    Bring Out the Best in Your Team.
                 </Typography>
-                <div className="features-container">
-                    <div className="feature-card feature1">
-                        <h3>Automated Scheduling</h3>
-                        <p>Save time by automating shift schedules for your team.</p>
-                        <div className="feature-details">
-                            <p><strong>Minimize Errors:</strong> Automatically create accurate schedules, eliminating manual mistakes like double bookings or missing shifts.</p>
-                            <p><strong>Employee Preferences:</strong> Employees can input their availability and preferred shifts, and the system will generate schedules that accommodate their needs.</p>
-                            <p><strong>Real-Time Updates:</strong> Instant notifications for employees and managers about schedule changes, keeping everyone informed.</p>
-                            <p><strong>Compliance & Fairness:</strong> Ensures schedules comply with labor laws and company policies, maintaining fairness in shift assignments.</p>
-                            <p><strong>Cost-Effective:</strong> Reduces the need for manual intervention and optimizes staffing levels to prevent overstaffing or understaffing.</p>
-                            <p>The system automatically adapts to last-minute changes, like shift swaps or sick days, and provides a customizable solution for your business.</p>
-                        </div>
-                    </div>
-                    <div className="feature-card feature2">
-                        <h3>Detailed Reports</h3>
-                        <p>Access employee performance and shift history insights.</p>
-                    </div>
-                    <div className="feature-card feature3">
-                        <h3>Easy Collaboration</h3>
-                        <p>Share schedules and updates with employees seamlessly.</p>
-                    </div>
-                </div>
+                <Typography variant="h6" style={{ marginBottom: "30px" }}>
+                    Simplify workforce management and boost productivity with our cutting-edge scheduling platform.
+                </Typography>
+                <Link to="/signup" style={{ textDecoration: "none" }}>
+                    <Button
+                        variant="contained"
+                        size="large"
+                        style={{ backgroundColor: "#333", color: "#fff", borderRadius: "30px" }}
+                    >
+                        Get Started
+                    </Button>
+                </Link>
+            </header>
+
+            {/* Features Section */}
+            <section id="features" style={{ padding: "60px 20px" }}>
+                <Typography
+                    variant="h4"
+                    style={{
+                        textAlign: "center",
+                        fontWeight: "bold",
+                        marginBottom: "40px",
+                        color: "#333",
+                    }}
+                >
+                    Our Features
+                </Typography>
+                <Grid container spacing={4} justifyContent="center">
+                    {/* Individual Feature Cards */}
+                    {[
+                        {
+                            icon: <Schedule style={{ fontSize: 60, color: "#045656" }} />,
+                            title: "Automated Scheduling",
+                            description: "Save time and reduce errors by automating shift schedules for your team.",
+                        },
+                        {
+                            icon: <BarChart style={{ fontSize: 60, color: "#045656" }} />,
+                            title: "Detailed Reports",
+                            description: "Access insights on performance, shift history, and productivity at a glance.",
+                        },
+                        {
+                            icon: <Group style={{ fontSize: 60, color: "#045656" }} />,
+                            title: "Easy Collaboration",
+                            description: "Effortlessly share schedules and updates, improving team communication.",
+                        },
+                        {
+                            icon: <Monitor style={{ fontSize: 60, color: "#045656" }} />,
+                            title: "Employee Monitoring",
+                            description: "Track workforce activities to ensure maximum efficiency and accountability.",
+                        },
+                        {
+                            icon: <AccessTime style={{ fontSize: 60, color: "#045656" }} />,
+                            title: "Time and Attendance",
+                            description: "Keep accurate records of employee attendance and manage time logs effortlessly.",
+                        },
+                        {
+                            icon: <TrendingUp style={{ fontSize: 60, color: "#045656" }} />,
+                            title: "Productivity Analytics",
+                            description: "Measure employee productivity with data-driven insights and analytics.",
+                        },
+                    ].map((feature, index) => (
+                        <Grid item xs={12} sm={6} md={4} key={index}>
+                            <Box
+                                style={{
+                                    borderRadius: "12px",
+                                    padding: "30px",
+                                    backgroundColor: "#F9FFF1",
+                                    textAlign: "center",
+                                    boxShadow: "0 6px 12px rgba(0, 0, 0, 0.1)",
+                                }}
+                            >
+                                {feature.icon}
+                                <Typography variant="h6" style={{ fontWeight: "bold", margin: "20px 0" }}>
+                                    {feature.title}
+                                </Typography>
+                                <Typography style={{ color: "#555" }}>{feature.description}</Typography>
+                            </Box>
+                        </Grid>
+                    ))}
+                </Grid>
             </section>
 
+            <Divider />
+
             {/* About Us Section */}
-            <section id="about" className="about-section">
-                <Typography variant="h4" className="section-title">
+            <section id="about" style={{ padding: "60px 20px", backgroundColor: "#FAFAFA" }}>
+                <Typography
+                    variant="h4"
+                    style={{
+                        textAlign: "center",
+                        fontWeight: "bold",
+                        marginBottom: "30px",
+                        color: "#333",
+                    }}
+                >
                     About Us
                 </Typography>
-                <p className="about-text">
-                    Workforce Shift Scheduling helps organizations simplify workforce management. Our mission is to
-                    make shift planning, reporting, and collaboration effortless, so you can focus on growing your
-                    business.
-                </p>
+                <Typography
+                    style={{
+                        maxWidth: "800px",
+                        margin: "0 auto",
+                        textAlign: "center",
+                        color: "#555",
+                        fontSize: "18px",
+                    }}
+                >
+                    Workforce Shift Scheduling helps organizations of all sizes streamline their team management
+                    processes. From simplifying shift planning to enhancing productivity, we are committed to
+                    helping you succeed.
+                </Typography>
             </section>
 
             {/* Contact Us Section */}
-            <section id="contact" className="contact-section">
-                <Typography variant="h4" className="section-title">
+            <section id="contact" style={{ padding: "60px 20px" }}>
+                <Typography
+                    variant="h4"
+                    style={{
+                        textAlign: "center",
+                        fontWeight: "bold",
+                        marginBottom: "30px",
+                        color: "#333",
+                    }}
+                >
                     Contact Us
                 </Typography>
-                <form className="contact-form">
-                    <TextField
-                        label="Name"
-                        variant="outlined"
-                        fullWidth
-                        margin="normal"
-                        className="contact-input"
-                    />
-                    <TextField
-                        label="Email"
-                        variant="outlined"
-                        fullWidth
-                        margin="normal"
-                        className="contact-input"
-                    />
-                    <TextField
-                        label="Message"
-                        variant="outlined"
-                        fullWidth
-                        multiline
-                        rows={4}
-                        margin="normal"
-                        className="contact-input"
-                    />
-                    <Button
-                        variant="contained"
-                        className="contact-btn"
-                        sx={{
-                            backgroundColor: '#2A3D45',
-                            '&:hover': { backgroundColor: '#1f2d33' },
-                        }}
-                    >
-                        Submit
-                    </Button>
-                </form>
+                <Grid container spacing={4} justifyContent="center">
+                    {/* Contact Info Cards */}
+                    {[
+                        {
+                            icon: <Phone style={{ fontSize: 40, color: "#045656" }} />,
+                            title: "Phone",
+                            content: "+91-123-456-7890",
+                        },
+                        {
+                            icon: <Email style={{ fontSize: 40, color: "#045656" }} />,
+                            title: "Email",
+                            content: "support@shiftmanager.com",
+                        },
+                        {
+                            icon: <LocationOn style={{ fontSize: 40, color: "#045656" }} />,
+                            title: "Address",
+                            content: "123 Workforce Blvd, City, Country",
+                        },
+                    ].map((contact, index) => (
+                        <Grid item xs={12} sm={6} md={4} key={index}>
+                            <Box
+                                style={{
+                                    borderRadius: "12px",
+                                    padding: "20px",
+                                    backgroundColor: "#F9FFF1",
+                                    textAlign: "center",
+                                    boxShadow: "0 6px 12px rgba(0, 0, 0, 0.1)",
+                                }}
+                            >
+                                {contact.icon}
+                                <Typography variant="h6" style={{ fontWeight: "bold", margin: "20px 0" }}>
+                                    {contact.title}
+                                </Typography>
+                                <Typography style={{ color: "#555" }}>{contact.content}</Typography>
+                            </Box>
+                        </Grid>
+                    ))}
+                </Grid>
             </section>
 
-            {/* Footer Section */}
-            <footer className="landing-footer">
+            {/* Footer */}
+            <footer style={{ backgroundColor: "#333", color: "#fff", padding: "20px 0", textAlign: "center" }}>
                 <Typography variant="body2">
                     © 2024 Workforce Shift Scheduling. All rights reserved.
                 </Typography>
