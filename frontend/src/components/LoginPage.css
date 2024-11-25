@@ -1,72 +1,24 @@
-/* Main container */
-.login-container {
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    padding: 20px; /* Added padding around the container */
-    background-color: #f5f5f5;
-}
-
-/* Form container styling */
-.login-paper {
-    position: relative;
-    background-color: white;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: none;
-    width: 100%;
-    max-width: 500px;
-}
-
-/* Form group styling */
-.form-group {
-    margin-bottom: 20px;
-}
-
-/* Input field label */
-label {
+.nav-link {
+    color: #333;
+    text-decoration: none;
     font-weight: bold;
-    display: block;
-    margin-bottom: 5px;
+    transition: color 0.3s ease;
 }
 
-/* Select dropdown */
-.select-dropdown {
-    width: 100%;
+.nav-link:hover {
+    color: #045656;
 }
 
-/* Submit button */
-.login-button {
-    width: 100%;
-    padding: 10px;
-    background-color: #045656; /* Changed button color */
-    color: white;
-    border: none;
-    border-radius: 4px;
-    font-size: 16px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
+.hover-box:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
 
-.login-button:disabled {
-    background-color: #ccc;
-    cursor: not-allowed;
+.hover-outline:hover {
+    background-color: #045656;
+    color: #fff !important;
 }
 
-.login-button:hover:not(:disabled) {
-    background-color: #034f4f;
-}
-
-/* Error message styling */
-.error-message {
-    color: red;
-    margin-bottom: 10px;
-}
-
-/* Success message styling */
-.success-message {
-    color: green;
-    margin-bottom: 10px;
+.hover-contained:hover {
+    opacity: 0.9;
 }

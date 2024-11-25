@@ -1,0 +1,158 @@
+.landing-page {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 100vh;
+    background: linear-gradient(to bottom, #f5f5f5, #e0e0e0);
+    font-family: 'Arial', sans-serif;
+}
+
+/* Header Styles */
+.landing-header {
+    text-align: center;
+    padding: 250px;
+    background-color: #7ba5a5;
+    color: white;
+    border-bottom: 4px solid #7ba5a5;
+}
+
+.landing-header h1 {
+    font-size: 3rem;
+    margin-bottom: 10px;
+}
+
+.landing-header p {
+    font-size: 1.2rem;
+    margin: 0;
+}
+
+.header-buttons {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+/* Features Section */
+.features-section {
+    padding: 50px;
+    text-align: center;
+    background-color: #ffffff;
+    min-height: 100vh; /* Each feature takes full screen */
+    overflow-y: auto; /* Allow vertical scrolling */
+}
+
+.section-title {
+    font-size: 2rem;
+    margin-bottom: 30px;
+    color: #045656;
+}
+
+.features-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.feature-card {
+    width: 80%;
+    padding: 40px;
+    margin: 20px 0;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    min-height: 70vh;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.feature-card h3 {
+    color: #045656;
+    margin-bottom: 20px;
+}
+
+.feature-card p {
+    color: #333;
+    font-size: 1.2rem;
+}
+
+/* Pastel Colors for Features */
+.feature1 {
+    background-color: #e0c3fc; /* Pastel Purple */
+}
+
+.feature2 {
+    background-color: #ffb3b3; /* Pastel Pink */
+}
+
+.feature3 {
+    background-color: #c2f0c2; /* Pastel Green */
+}
+
+/* About Section */
+.about-section {
+    padding: 50px;
+    background-color: #e0e0e0;
+    text-align: center;
+}
+
+.about-text {
+    font-size: 1.2rem;
+    color: #333;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+/* Contact Section */
+.contact-section {
+    padding: 50px;
+    background-color: #ffffff;
+    text-align: center;
+}
+
+.contact-form {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.contact-input {
+    margin-bottom: 20px;
+}
+
+.contact-btn {
+    padding: 10px 20px;
+    font-size: 1rem;
+    text-transform: none;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+/* Footer Section */
+.landing-footer {
+    text-align: center;
+    padding: 10px;
+    background-color: #034f4f;
+    color: white;
+}
+
+.navbar-toolbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navbar-links a {
+    text-decoration: none;
+    color: white;
+    font-weight: 500;
+    transition: color 0.3s;
+}
+
+.navbar-links a:hover {
+    color: #ccc;
+}
+
+.navbar {
+    height: 70px;
+}
