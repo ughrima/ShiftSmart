@@ -9,8 +9,5 @@ import java.util.List;
 
 @Repository
 public interface EmployeeRepository extends MongoRepository<Employee, String> {
-    List<Employee> findByEmployerId(String employerId);  
-    // Retrieves employees of a specific employer
+    List<Employee> findByEmployer_Id(String employerId);
 }
-
-

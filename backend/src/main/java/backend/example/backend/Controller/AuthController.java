@@ -6,6 +6,8 @@ import backend.example.backend.Entity.*;
 import backend.example.backend.Repository.*;
 import backend.example.backend.Security.jwt.JWTTokenProvider;
 import backend.example.backend.Service.CustomUserDetailsService;
+import backend.example.backend.Service.EmployeeService;
+
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVRecord;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,6 +49,9 @@ public class AuthController {
 
     @Autowired
     private CustomUserDetailsService customUserDetailsService;
+
+      @Autowired
+    private EmployeeService employeeService;
 
     // Login Endpoint
     @PostMapping("/login")
@@ -108,6 +113,7 @@ public class AuthController {
             return ResponseEntity.status(500).body("Error during registration: " + e.getMessage());
         }
     }
+
 
     // Helper method: Parse CSV
     private List<Employee> parseCsv(MultipartFile file, Employer employer) {
@@ -178,4 +184,7 @@ public class AuthController {
             return false;
         }
     }
+
+
+
 }

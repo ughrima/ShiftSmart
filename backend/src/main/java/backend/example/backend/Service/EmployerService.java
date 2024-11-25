@@ -1,5 +1,6 @@
 package backend.example.backend.Service;
 
+import backend.example.backend.Entity.Employee;
 import backend.example.backend.Entity.Employer;
 import backend.example.backend.Repository.EmployerRepository;
 import backend.example.backend.Repository.EmployeeRepository;
@@ -51,4 +52,18 @@ public class EmployerService {
             employerRepository.delete(employer);
         });
     }
+
+    public Employer getEmployerWithEmployees(String employerId) {
+        Employer employer = employerRepository.findById(employerId)
+            .orElseThrow(() -> new IllegalArgumentException("Employer not found"));
+    
+        // Fetch the employees linked to this employer
+        List<Employee> employees = employeeRepository.findByEmployer_Id(employerId);
+    
+        // Set the list of employees in the employer object
+        employer.setEmployees(employees);
+    
+        return employer;
+    }
+
 }

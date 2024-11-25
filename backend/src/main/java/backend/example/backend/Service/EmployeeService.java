@@ -29,20 +29,6 @@ public class EmployeeService {
         return employeeRepository.findById(id);
     }
 
-    // Add a new employee to an employer
-    public Employee addEmployeeToEmployer(String employerId, Employee employee) {
-        Employer employer = employerRepository.findById(employerId)
-                .orElseThrow(() -> new RuntimeException("Employer not found"));
-
-        employee.setEmployer(employer);
-        employee = employeeRepository.save(employee);
-
-        employer.getEmployees().add(employee);
-        employerRepository.save(employer);
-
-        return employee;
-    }
-
     // Update an existing employee
     public Employee updateEmployee(String id, Employee updatedEmployee) {
         return employeeRepository.findById(id).map(employee -> {
@@ -57,4 +43,55 @@ public class EmployeeService {
     public void deleteEmployee(String id) {
         employeeRepository.deleteById(id);
     }
+
+    // public Employee addEmployeeToEmployer(String employerId, Employee employee) {
+    //     // Fetch the employer from the database using the provided employerId
+    //     Employer employer = employerRepository.findById(employerId)
+    //             .orElseThrow(() -> new RuntimeException("Employer not found"));
+    
+    //     // Set the employer field in the employee object (to ensure proper linkage)
+    //     employee.setEmployer(employer);
+    
+    //     // Save the employee entity first
+    //     employee = employeeRepository.save(employee);
+    //     System.out.println("Employee saved: " + employee);
+    
+    //     // Add the newly saved employee to the employer's employees list
+    //     employer.getEmployees().add(employee);
+    
+    //     // Save the employer with the updated employees list
+    //     employer = employerRepository.save(employer);
+    //     System.out.println("Employer updated with new employee: " + employer);
+    
+    //     // Fetch the updated employer and verify if the employees list is populated
+    //     Employer updatedEmployer = employerRepository.findById(employerId)
+    //             .orElseThrow(() -> new RuntimeException("Employer not found"));
+    
+    //     // Log the updated list of employees to verify it's updated correctly
+    //     System.out.println("Updated Employer with employees: " + updatedEmployer.getEmployees());
+    
+    //     return employee;
+    // }
+    public Employee addEmployeeToEmployer(String employerId, Employee employee) {
+        // Fetch the employer from the database using the provided employerId
+        Employer employer = employerRepository.findById(employerId)
+                .orElseThrow(() -> new RuntimeException("Employer not found"));
+    
+        // Set the employer field in the employee object (to ensure proper linkage)
+        employee.setEmployer(employer);
+    
+        // Save the employee entity first
+        employee = employeeRepository.save(employee);
+    
+        // Add the newly saved employee to the employer's employees list
+        employer.getEmployees().add(employee);
+    
+        // Save the employer with the updated employees list
+        employerRepository.save(employer);
+    
+        return employee;
+    }
+    
+    
 }
+

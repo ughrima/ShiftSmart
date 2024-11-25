@@ -32,9 +32,13 @@ public class Employer {
     @ElementCollection(fetch = FetchType.EAGER)
     private Set<String> roles = new HashSet<>();
 
+    @DBRef
+    private List<Shift> assignedShifts = new ArrayList<>();
 
 
     // Reference to a list of employees
     @DBRef
     private List<Employee> employees = new ArrayList<>();
+
+    
 }

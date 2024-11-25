@@ -1,6 +1,5 @@
 package backend.example.backend.Entity;
 
-import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -30,9 +29,11 @@ public class Shift {
     private int maxEmployees;
 
     private List<String> requiredRoles = new ArrayList<>();
-    private List<Employee> assignedEmployees = new ArrayList<>(); // Initialize to avoid null
-    
+
     @DBRef
     private Employer employer;
-    
+
+    @DBRef(lazy = false)
+private List<Employee> assignedEmployees = new ArrayList<>();
+
 }
