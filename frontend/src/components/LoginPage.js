@@ -1,32 +1,63 @@
 import React, { useState } from 'react';
-import { TextField, Button, Paper, Typography, Box } from '@mui/material';
-import { Link } from 'react-router-dom'; // Import Link for routing
+import { TextField, Button, Typography, Box } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
 import './LoginPage.css';
 
 const LoginPage = () => {
-    const [userId, setUserId] = useState('');
+    const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [error, setError] = useState('');
+    const navigate = useNavigate();
 
-    const handleLogin = () => {
-        console.log('User ID:', userId);
-        console.log('Password:', password);
-        // Add your login logic here (e.g., API call for authentication)
+    const handleLogin = async () => {
+        if (!email.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)) {
+            setError('Please enter a valid email address.');
+            return;
+        }
+        if (!password) {
+            setError('Password cannot be empty.');
+            return;
+        }
+
+        setError('');
+        try {
+            const response = await fetch('/auth/login', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ email, password }),
+            });
+            const data = await response.json();
+
+            if (response.ok) {
+                localStorage.setItem('token', data.token);
+                navigate('/shift');
+            } else {
+                setError(data.message || 'Invalid email or password.');
+            }
+        } catch (err) {
+            setError('Server error. Please try again later.');
+        }
     };
 
     return (
         <Box className="login-container">
-            <Paper elevation={3} className="login-paper">
-                <Typography variant="h5" className="login-header">
+            {/* Background with overlay */}
+            <Box className="login-background"></Box>
+
+            {/* Login form in the bottom-right corner */}
+            <Box className="login-form-container">
+                <Typography variant="h4" className="login-header">
                     Login
                 </Typography>
+                {error && <Typography className="error-message">{error}</Typography>}
                 <form noValidate autoComplete="off">
                     <TextField
-                        label="User ID"
+                        label="Email"
                         variant="outlined"
                         fullWidth
                         margin="normal"
-                        value={userId}
-                        onChange={(e) => setUserId(e.target.value)}
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
                         className="login-textfield"
                     />
                     <TextField
@@ -45,24 +76,15 @@ const LoginPage = () => {
                         fullWidth
                         onClick={handleLogin}
                         sx={{
-                            backgroundColor: '#045656', // Button color
+                            backgroundColor: '#FF6600',
                             color: 'white',
-                            '&:hover': {
-                                backgroundColor: '#034f4f', // Darker shade for hover
-                            },
+                            '&:hover': { backgroundColor: '#E65C00' },
                         }}
                     >
                         Login
                     </Button>
-                    {/* Add the Signup link below the login button */}
-                    <Typography variant="body2" style={{ marginTop: '10px', textAlign: 'center' }}>
-                        Don't have an account?{' '}
-                        <Link to="/signup" style={{ textDecoration: 'none', color: '#045656' }}>
-                            Sign Up
-                        </Link>
-                    </Typography>
                 </form>
-            </Paper>
+            </Box>
         </Box>
     );
 };

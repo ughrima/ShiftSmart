@@ -1,47 +1,155 @@
-/* SignUpPage.css */
+/* Container for the entire page */
+.signup-page {
+    display: flex;
+    height: 100vh;
+    background-color: #f0f4f8; /* Light background color */
+}
 
-.signup-container {
+/* Left section with project/company name */
+/* Left section with project/company name */
+/* Left section with project/company name */
+.signup-left {
+    flex: 1;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
-    background-color: #f4f4f9;
-    padding: 0 20px;
-}
-
-.signup-paper {
-    padding: 40px;
-    width: 100%;
-    max-width: 400px;
-    background-color: white;
-    border-radius: 15px;
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-}
-
-.signup-header {
+    position: relative; /* For overlay */
+    background-image: url('/Users/bajajnidhi/Desktop/minor/ShiftSmart/frontend/public/images/046dda85a1c97123df970e6b0f3670bf.jpg'); /* Image path relative to public folder */
+    background-size: cover;
+    background-position: center;
+    color: white;
+    font-family: 'Arial', sans-serif;
     text-align: center;
-    margin-bottom: 30px;
-    color: #045656;
-    font-weight: 600;
 }
 
-.signup-textfield {
+/* Overlay with increased opacity */
+.signup-left::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.4); /* Black overlay with 40% opacity */
+    z-index: 1; /* Places the overlay above the background image */
+}
+
+/* Project name text styling */
+.signup-left h1 {
+    position: relative; /* So the text appears above the overlay */
+    font-size: 54px;
+    font-weight: bold;
+    color: white; /* Make the text color black */
+    z-index: 2; /* Ensures the text is above the overlay */
+    margin: 0; /* Remove default margin */
+    padding: 0; /* Remove padding to avoid box around text */
+}
+
+
+/* Right section with signup form */
+.signup-right {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(205, 239, 243);
+    padding: 20px;
+    font-family: 'Arial', sans-serif;
+}
+
+.signup-container {
+    width: 80%;
+    max-width: 400px;
+    padding: 20px 30px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Remaining styles stay the same */
+.signup-header {
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+    color: #333333;
     margin-bottom: 20px;
 }
 
-.signup-csv-upload {
-    margin-top: 10px;
+.signup-textfield {
+    margin-bottom: 16px;
+    display: flex;
+    flex-direction: column;
+}
+
+.signup-textfield label {
+    font-size: 14px;
+    color: #555555;
+    margin-bottom: 6px;
+}
+
+.signup-textfield input,
+.signup-textfield select {
+    padding: 10px;
+    font-size: 14px;
+    border: 1px solid #cccccc;
+    border-radius: 4px;
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+.signup-textfield input:focus,
+.signup-textfield select:focus {
+    border-color: #0077b6;
+}
+
+.signup-checkbox {
+    display: flex;
+    align-items: center;
+    margin-bottom: 16px;
+}
+
+.signup-checkbox input {
+    margin-right: 8px;
+}
+
+.signup-checkbox label {
+    font-size: 14px;
+    color: #555555;
 }
 
 .signup-button {
-    background-color: #045656;
-    color: white;
-    font-weight: bold;
-    padding: 10px 0;
-    transition: all 0.3s ease;
+    text-align: center;
 }
 
-.signup-button:hover {
-    background-color: #034f4f;
-    transform: scale(1.02);
+.signup-button button {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    background-color: #0077b6;
+    color: #ffffff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.signup-button button:hover {
+    background-color: #005f99;
+    transform: translateY(-2px);
+}
+
+.signup-redirect {
+    margin-top: 20px;
+    font-size: 14px;
+    text-align: center;
+    color: #555555;
+}
+
+.signup-redirect a {
+    color: #0077b6;
+    text-decoration: none;
+}
+
+.signup-redirect a:hover {
+    text-decoration: underline;
 }

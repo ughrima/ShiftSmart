@@ -1,24 +1,81 @@
-.nav-link {
+/* Full-page container */
+.login-container {
+    position: relative;
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    overflow: hidden;
+}
+
+/* Background image with overlay */
+.login-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('/Users/bajajnidhi/Desktop/minor/ShiftSmart/frontend/public/images/download.jpeg');
+    background-size: cover;
+    background-position: center;
+    z-index: 1;
+    opacity: 0.8; /* Makes the image slightly transparent */
+    filter: brightness(0.7); /* Darkens the image */
+}
+
+/* Form container in the bottom-right corner */
+.login-form-container {
+    position: relative;
+    z-index: 2;
+    background-color: rgba(255, 255, 255, 0.9); /* Semi-transparent white background */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    width: 30%;
+    min-width: 300px;
+    margin: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+/* Login header styling */
+.login-header {
     color: #333;
-    text-decoration: none;
     font-weight: bold;
-    transition: color 0.3s ease;
+    text-align: center;
+    margin-bottom: 20px;
 }
 
-.nav-link:hover {
-    color: #045656;
+/* Error message styling */
+.error-message {
+    color: red;
+    font-size: 14px;
+    text-align: center;
+    margin-bottom: 15px;
 }
 
-.hover-box:hover {
-    transform: scale(1.05);
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+/* Input fields styling */
+.login-textfield {
+    margin-bottom: 15px;
 }
 
-.hover-outline:hover {
-    background-color: #045656;
-    color: #fff !important;
+/* Login button styling */
+.login-button {
+    margin-top: 10px;
+    font-weight: bold;
+    text-transform: uppercase;
 }
 
-.hover-contained:hover {
-    opacity: 0.9;
+/* Responsive design for smaller screens */
+@media (max-width: 768px) {
+    .login-form-container {
+        width: 80%;
+        padding: 15px;
+    }
+
+    .login-header {
+        font-size: 1.5rem;
+    }
 }
