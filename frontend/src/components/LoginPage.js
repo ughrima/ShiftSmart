@@ -76,7 +76,7 @@ const LoginPage = () => {
                         fullWidth
                         onClick={handleLogin}
                         sx={{
-                            backgroundColor: '#FF6600',
+                            backgroundColor: '#0000FF',
                             color: 'white',
                             '&:hover': { backgroundColor: '#E65C00' },
                         }}
